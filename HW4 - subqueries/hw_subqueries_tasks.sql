@@ -96,8 +96,13 @@ select
 from 
 (select PickedByPersonID, CustomerID from [Sales].[Orders]
 					where orderid in 
-											(select top 3 WITH TIES orderid from [Sales].[OrderLines] 
-												order by UnitPrice desc 
+											(select distinct orderid
+												from [Sales].[OrderLines]
+												where UnitPrice in (
+													select distinct top 3 WITH TIES UnitPrice
+													from [Sales].[OrderLines]
+													order by UnitPrice desc
+												)
 											)
 					) as t1
 order by CityID, FullName
@@ -106,8 +111,13 @@ order by CityID, FullName
 ; with CTE_top_Price as (
 	select PickedByPersonID, CustomerID from [Sales].[Orders]
 	where orderid in 
-						(select top 3 WITH TIES orderid from [Sales].[OrderLines] 
-							order by UnitPrice desc 
+						(select distinct orderid
+												from [Sales].[OrderLines]
+												where UnitPrice in (
+													select distinct top 3 WITH TIES UnitPrice
+													from [Sales].[OrderLines]
+													order by UnitPrice desc
+												)
 						)
 	)
 					
