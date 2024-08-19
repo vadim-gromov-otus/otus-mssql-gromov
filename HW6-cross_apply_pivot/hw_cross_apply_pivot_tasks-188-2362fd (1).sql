@@ -117,8 +117,11 @@ code for columnname in (IsoAlpha3Code, IsoNumericCode)
 */
 
 select c.CustomerID, c.CustomerName, t1.* from [Sales].[Customers] c
-outer apply 
-(select top 2 [StockItemID],[UnitPrice],[OrderDate]  from [Sales].[Orders] O
+cross apply 
+(select top 2 [StockItemID],max([UnitPrice]) as UnitPrice, max([OrderDate]) as OrderDate
+from [Sales].[Orders] O
 inner join  [Sales].[OrderLines] OL on o.OrderID = ol.OrderID
 where o.CustomerID = c.CustomerID
+group by [StockItemID]
 order by UnitPrice desc) as t1
+
