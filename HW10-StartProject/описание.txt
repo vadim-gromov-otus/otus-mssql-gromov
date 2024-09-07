@@ -1,0 +1,46 @@
+База домашняя бухгалтерия  
+Subject члены семьи
+Income Доходы 
+Expenses  Расходы
+TypeExpenses  тип расхода, предполагается их дополнительно категоризировать для отчетов
+
+Subject
+-
+SubjectID PK int
+FirstName string INDEX
+
+
+Income
+-
+IncomeID PK int
+SubjectID int FK >- Subject.SubjectID
+Type string
+Summ money
+Date date
+
+Expenses
+-
+ExpensesID PK int
+SubjectID int FK >- Subject.SubjectID
+TypeExpenses int FK >- TypeExpenses.TypeID
+Summ money
+Date date
+
+TypeExpenses
+-
+TypeID PK int
+Name
+Category
+
+
+
+
+
+
+
+
+
+
+
+
+
