@@ -1,0 +1,22 @@
+USE [HomeBookkeeping]
+GO
+
+/****** Object:  Table [dbo].[TypeExpenses]    Script Date: 08.09.2024 23:10:53 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TypeExpenses](
+	[TypeID] [int] NOT NULL,
+	[Name] [nchar](10) NOT NULL,
+	[Category] [nchar](10) NOT NULL,
+ CONSTRAINT [PK_TypeExpenses] PRIMARY KEY CLUSTERED 
+(
+	[TypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
